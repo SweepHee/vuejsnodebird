@@ -1,7 +1,7 @@
 <template>
-    <v-card>
+    <v-card style="margin-bottom: 20px">
         <v-container>
-            <v-form ref="form" v-model="valid" @submit.prevent="obSubmitForm">
+            <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm">
                 <v-textarea 
                     outlined
                     auto-grow
@@ -14,20 +14,21 @@
                     :rules="[v => !!v.trim() || '내용을 입력하세요.']"
                     @input="onChangeTextarea"
                 />
-                
+                <v-btn color="green" type="submit" absolute right>짹짹</v-btn>
+                <v-btn>이미지 업로드</v-btn>
             </v-form>
-            <v-btn color="green" type="submit" absolute right>짹짹</v-btn>
-            <v-btn>이미지 업로드</v-btn>
+       
         </v-container>
     </v-card>
 </template>
 
 <script>
-import {mapState } from "vuex";
+import { mapState } from "vuex";
 
 export default {
     data() {
         return{
+            valid: false,
             hideDetails: true,
             successMessages: '',
             success: false,
@@ -35,8 +36,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(["users/me"])
-        // ...mapState("users", ['me']) 도 가능
+        ...mapState("users", ['me'])
     },
     methods: {
         onChangeTextarea() {
@@ -44,13 +44,12 @@ export default {
             this.success = false;
             this.successMessages = '';
         },
-        onsubmitForm() {
+        onSubmitForm() {
             if(this.$refs.form.validate()) {
                 this.$store.dispatch("posts/add", {
                     content: this.content,
-                    Users: {
+                    User: {
                         nickname: this.me.nickname,
-
                     },
                     Comments: [],
                     Images: [],
@@ -58,6 +57,7 @@ export default {
                     createdAt: Date.now(),
                 })
                 .then(() => {
+                    this.content = '';
                     this.hideDetails = false;
                     this.success = true;
                     this.successMessages = "게시글 등록 성공!";

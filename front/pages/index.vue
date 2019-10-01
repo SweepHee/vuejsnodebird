@@ -2,12 +2,8 @@
     <v-container>
         <post-form v-if="me" />
         <div>
-            <post-card />
-            <post-card />
-            <post-card />
-            <post-card />
-            <post-card />
-            <post-card />
+            <post-card v-for="p in mainPosts" :key="p.id" :post="p" />
+            <!-- :post가 props. post-card에 p값을 전달할 수 있다. -->
         </div>
     </v-container>
 </template>
@@ -15,6 +11,7 @@
 <script>
 import PostCard from "~/components/PostCard";
 import PostForm from "~/components/PostForm";
+
 
 export default {
     components: {
@@ -29,6 +26,9 @@ export default {
     computed: {
         me() {
             return this.$store.state.users.me
+        },
+        mainPosts() {
+            return this.$store.state.posts.mainPosts
         }
     },
 
