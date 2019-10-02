@@ -4,9 +4,11 @@
             <v-card style="margin-bottom: 20px">
                 <v-container>
                     <v-subheader>내 프로필</v-subheader>
-                    <v-form>
+                    <v-form v-model="valid" @submit.prevent="onChangeNickname">
                         <v-text-field 
+                            v-model="nickname"
                             label="닉네임"
+                            :rules="nicknameRules"
                             required
                         />
                         <v-btn color="blue" type="submit">수정</v-btn>
@@ -16,13 +18,13 @@
             <v-card style="margin-bottom: 20px">
                 <v-container>
                     <v-subheader>팔로잉</v-subheader>
-                    <follow-list />
+                    <follow-list :users="followingList" :remove="removeFollowing" />
                 </v-container>
             </v-card>
             <v-card style="margin-bottom: 20px">
                 <v-container>
                     <v-subheader>팔로워</v-subheader>
-                    <follow-list />
+                    <follow-list :users="followerList" :remove="removeFollower" />
                 </v-container>
             </v-card>
         </v-container>
@@ -37,8 +39,33 @@ export default {
     },
     data() {
         return {
-            name : "Nuxt.js",
+            valid: false,
+            nickname: '',
+            nicknameRules: [
+                v => !!v || "닉네임을 입력하세요",
+            ]
         }
+    },
+    computed: {
+        followingList() {
+            return this.$store.state.users.followingList;
+        },
+        followerList() {
+            return this.$store.state.users.followerList;
+        }
+    },
+    methods: {
+        onChangeNickname() {
+            this.$store.dispatch("users/changeNickname", {
+                nickname: this.nickname,
+            });
+        },
+        removeFollowing(id) {
+            this.$store.dispatch("users/removeFollowing", { id })
+        },
+        removeFollower(id) {
+            this.$store.dispatch("users/removeFollower", { id })
+        },
     },
 
     // head -> nuxt 편의기능. import같은거 필요X 페이지제목이 설정된다!
