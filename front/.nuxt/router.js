@@ -3,9 +3,9 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _034a7391 = () => interopDefault(import('..\\pages\\profile.vue' /* webpackChunkName: "pages_profile" */))
-const _6f082c40 = () => interopDefault(import('..\\pages\\signup.vue' /* webpackChunkName: "pages_signup" */))
-const _f6a7eb8c = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
+const _38a57e1c = () => interopDefault(import('..\\pages\\profile.vue' /* webpackChunkName: "pages_profile" */))
+const _11c96c5f = () => interopDefault(import('..\\pages\\signup.vue' /* webpackChunkName: "pages_signup" */))
+const _3474bbdb = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 Vue.use(Router)
 
@@ -18,15 +18,15 @@ export const routerOptions = {
 
   routes: [{
       path: "/profile",
-      component: _034a7391,
+      component: _38a57e1c,
       name: "profile"
     }, {
       path: "/signup",
-      component: _6f082c40,
+      component: _11c96c5f,
       name: "signup"
     }, {
       path: "/",
-      component: _f6a7eb8c,
+      component: _3474bbdb,
       name: "index"
     }],
 
