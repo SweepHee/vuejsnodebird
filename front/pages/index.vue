@@ -31,7 +31,7 @@ export default {
             return this.$store.state.posts.mainPosts
         }
     },
-    fetch( {store}) {
+    fetch( {store} ) { // 컴포넌트가 화면에 보이기 전에 
         store.dispatch("posts/loadPosts");
     },
 

@@ -47,8 +47,8 @@ export const actions = {
     addComment({ commit }, payload) {
         commit("addComment", payload);
     },
-    loadPosts({ commit }, payload) {
-        if(state.hasMorePost) {
+    loadPosts({ commit, state }, payload) {
+        if(state.hasMorePost) { // actions에서 state를 사용하려면 매개변수에 state를 추가해줘야한다 this로 안됨.
             commit("loadPosts");
         }
     }
