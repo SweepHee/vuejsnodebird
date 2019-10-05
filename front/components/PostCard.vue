@@ -5,7 +5,7 @@
             <v-card-text>
                 <div>
                     <h3>{{post.User.nickname}}</h3>
-                    <div>{{post.content}}</div>
+                    <nuxt-link :to="'/post/' + post.id">{{post.content}}</nuxt-link>
                     <!-- postForm에서 submit하며 payload로 전달해준 객체 값 -->
                     <!-- 쉽게말해 postForm -> index(post를전달) -> postCard로 받음  -->
                 </div>

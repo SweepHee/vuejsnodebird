@@ -1,7 +1,10 @@
 export const state = () => ({
     mainPosts: [],
+    hasMorePost: true,
 });
 // state는 함수여야 한다.
+
+const limit = 10;
 
 export const mutations = {
     addMainPost(state, payload) {
@@ -14,7 +17,21 @@ export const mutations = {
     addComment(state, payload) {
         const index = state.mainPosts.findIndex( v => v.id === payload.postId);
         state.mainPosts[index].Comments.unshift(payload);
-    }
+    },
+    loadPosts(state) {
+        const fakePosts = Array(limit).fill().map(v => ({
+            id: Math.random().toString(),
+            User: {
+                id: 1,
+                nickname: "스윕"
+            },
+            content: `Hello infinite scrolling~ ${Math.random()}`,
+            Comments: [],
+            Images : [],
+        }));
+        state.mainPosts = state.mainPosts.concat(fakePosts);
+        state.hasMorePost = fakePosts.length === limit;
+    },
 };
 // mutations 는 함수가 아니어야 한다.
 
@@ -29,5 +46,10 @@ export const actions = {
     },
     addComment({ commit }, payload) {
         commit("addComment", payload);
+    },
+    loadPosts({ commit }, payload) {
+        if(state.hasMorePost) {
+            commit("loadPosts");
+        }
     }
 }
