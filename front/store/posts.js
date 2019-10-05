@@ -4,6 +4,7 @@ export const state = () => ({
 });
 // state는 함수여야 한다.
 
+const totalPosts = 51;
 const limit = 10;
 
 export const mutations = {
@@ -19,7 +20,8 @@ export const mutations = {
         state.mainPosts[index].Comments.unshift(payload);
     },
     loadPosts(state) {
-        const fakePosts = Array(limit).fill().map(v => ({
+        const diff = totalPosts - state.mainPosts.length;
+        const fakePosts = Array(diff > limit ? limit : diff).fill().map(v => ({
             id: Math.random().toString(),
             User: {
                 id: 1,

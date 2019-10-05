@@ -3,10 +3,10 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _38a57e1c = () => interopDefault(import('..\\pages\\profile.vue' /* webpackChunkName: "pages_profile" */))
-const _11c96c5f = () => interopDefault(import('..\\pages\\signup.vue' /* webpackChunkName: "pages_signup" */))
-const _0a8026ff = () => interopDefault(import('..\\pages\\post\\_id\\index.vue' /* webpackChunkName: "pages_post__id_index" */))
-const _3474bbdb = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
+const _034a7391 = () => interopDefault(import('..\\pages\\profile.vue' /* webpackChunkName: "pages_profile" */))
+const _6f082c40 = () => interopDefault(import('..\\pages\\signup.vue' /* webpackChunkName: "pages_signup" */))
+const _3d387740 = () => interopDefault(import('..\\pages\\post\\_id\\index.vue' /* webpackChunkName: "pages_post__id_index" */))
+const _f6a7eb8c = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 Vue.use(Router)
 
@@ -19,19 +19,19 @@ export const routerOptions = {
 
   routes: [{
       path: "/profile",
-      component: _38a57e1c,
+      component: _034a7391,
       name: "profile"
     }, {
       path: "/signup",
-      component: _11c96c5f,
+      component: _6f082c40,
       name: "signup"
     }, {
       path: "/post/:id?",
-      component: _0a8026ff,
+      component: _3d387740,
       name: "post-id"
     }, {
       path: "/",
-      component: _3474bbdb,
+      component: _f6a7eb8c,
       name: "index"
     }],
 

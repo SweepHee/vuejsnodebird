@@ -25,14 +25,33 @@ export default {
     },
     computed: {
         me() {
-            return this.$store.state.users.me
+            return this.$store.state.users.me;
         },
         mainPosts() {
-            return this.$store.state.posts.mainPosts
-        }
+            return this.$store.state.posts.mainPosts;
+        },
+        hasMorePost() {
+            return this.$store.state.posts.hasMorePost;
+        },
     },
     fetch( {store} ) { // 컴포넌트가 화면에 보이기 전에 
         store.dispatch("posts/loadPosts");
+    },
+    mounted() {
+        window.addEventListener("scroll", this.onScroll);
+    },
+    beforeDestroy() {
+        // created() 에서 만든건 beforeDestroy() 에서 제거해줘야 메모리 누수가 생기지 않음
+        window.removeEventListener("scroll", this.onScroll);
+    },
+    methods: {
+        onScroll() {
+            if(window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300 ) {
+                if(this.hasMorePost) {
+                    this.$store.dispatch("posts/loadPosts");
+                }
+            }
+        }
     },
 
     // head -> nuxt 편의기능. import같은거 필요X 페이지제목이 설정된다!
