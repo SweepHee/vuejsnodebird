@@ -22,7 +22,7 @@
                     <v-btn v-if="hasMoreFollowing" ark color="blue" style="width: 100%;">더보기</v-btn>
                 </v-container>
             </v-card>
-            <v-card style="margin-bottom: 20px">
+            <v-card style="margin-bottom: 10px">
                 <v-container>
                     <v-subheader>팔로워</v-subheader>
                     <follow-list :users="followerList" :remove="removeFollower" />
